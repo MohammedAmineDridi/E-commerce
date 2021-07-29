@@ -1,0 +1,27 @@
+{
+  "name": "pi",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "canvas-constructor": "^4.1.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "exceljs": "^4.2.0",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "http-msgs": "^1.0.9",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.18",
+    "puppeteer": "^7.1.0",
+    "puppeteer-core": "^7.1.0",
+    "twig": "^1.14.0",
+    "webshot": "^0.18.0",
+    "xlsx": "^0.16.9"
+  }
+}

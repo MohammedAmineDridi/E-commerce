@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<style>
+
+		div#a {
+
+			
+			background-image: url('images/footer_bg.png');
+
+			
+		}
+
+		div#b {
+
+			width: 900px ;
+			
+			/** display: inline-block; */
+
+			left: 200px;
+
+			padding: 100px ;
+		}
+
+		form#c {
+
+			/** display: inline-block; */
+
+			border-style: outset;
+
+			padding-left:  25px ;
+			padding-right:  25px ;
+
+			padding-top: 25px;
+			padding-bottom: 25px ;
+
+
+		}
+
+		div#prod1{
+			
+			display: inline-block;
+
+		}
+
+		div#tableprod {
+
+			border-style: outset;
+
+
+			padding-left:  25px ;
+			padding-right:  25px ;
+
+			padding-top: 25px;
+			padding-bottom: 25px ;
+
+
+		}
+
+		label {
+    	
+		    text-align: right;
+		    clear: both;
+		    float:left;
+		    margin-right:15px;
+				}
+
+	</style>
+
+
+	<title>Panier </title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+</head>
+<body >
+	
+	<div class="limiter">
+		<div class="container-login100" id ="a">
+
+			<div class="wrap-login100" id="b" align="center">
+
+
+			<!-- la partie des produit du votre panier -->
+
+
+<div id="tableprod">
+
+
+			<span class="login100-form-title">
+						 Votre Panier 
+					</span>
+
+    <div >
+        <div >
+            <table >
+               
+
+                <tbody>
+
+                	
+
+                		{% for product in products %}
+                	 
+                    <tr>
+
+                    	<!--produit 1 -->
+
+                       	 <td >
+
+                      	  <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src={{ product.photo }} style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+
+                            	<h5>nom produit : </span><span><strong>{{ product.nom }}</strong></h5>
+
+                                <h5>prix : </span><span><strong class="prix" id="prix{{product.id}}">{{ product.prix }} DT</strong></h5>
+
+                                	<h5>quantite :  <input type="number" style="border:3px solid #ccc;" id={{product.id}} class="quantite" name="quantity"  min="1" max="100" value="1" onchange="myfunc(this.id)" >
+                                	 </h5>
+
+                                		<h5>totale : </span><span><strong class="totale" id="totale{{product.id}}">{{product.prix}}    DT</strong></h5>
+
+                                			<a href="/deleteprod?id={{product.id}}" type="button" class="btn btn-danger">
+                           						 <span class="glyphicon glyphicon-remove"></span> Remove
+                       									 </a>
+
+                       									 <hr>
+
+                       									</td>
+                          									  </div>
+
+
+                       
+                	   </td>
+                    </tr>
+
+                    {% endfor %}
+
+                	   <!-- fin produit 2 -->
+
+
+
+                    </tbody>
+                    </table>
+                       </div>
+                           </div>
+                             </div>
+
+                             <!-- partie commande -->
+
+
+                    	
+                    	<form  action="log" class="login100-form validate-form" method="POST" id="c">
+
+					<span class="login100-form-title">
+						 Votre commande 
+					</span>
+
+					<div class="wrap-input100 validate-input">
+						<label> Sous-totale : </label>
+						<input class="input100" id="soustotale" type="text" name="soustotale" value="0      DT" readonly Required  /> 
+						
+						
+					</div>
+
+					<hr>
+
+					<div class="wrap-input100 validate-input" >
+						<label> TVA et Livraison : </label>
+						<input class="input100" id="tva" type="text" name="tva" value="5 DT" readonly Required  /> 
+						
+						
+					</div>
+
+					<div class="container-login100-form-btn">
+						<a href="/commande" class="login100-form-btn" type="submit">
+							Commander
+						</a>
+					</div>
+
+				</form>
+
+
+
+
+				
+			</div>
+
+
+			<!-- fin partie de la commande -->
+
+
+
+
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+
+function myfunc(id){
+
+	new_id = id ;
+
+	// alert(" id = " + id );
+
+	var sous_tot ;
+	var string_sous_tot ;
+	var string_tot;
+
+
+
+
+
+
+$( document ).ready(function() {        
+
+    
+
+    	//alert("e = " + e);
+
+    	// totale
+
+    	var totale = $('#totale'+id).text().substring(0,4);
+        // alert("totale = " + totale);
+
+      // prix
+
+       var prix = $('#prix'+id).text().substring(0,4);
+       // alert("prix = " + prix);
+
+      //quantite
+
+       var quantite = $('#'+id).val();
+       //alert("quantite = " + quantite);
+
+
+       // on a recuperer donc tt les paramétres .
+
+       // etpae 1 :
+
+       // faire les calcul
+
+       // ki tbadel quantity --> balise totale twali = prix * quantite .
+
+       var nouveau_totale = prix * quantite ;
+
+       //alert("le nouveau_totale = " + nouveau_totale ) ;
+
+       $('#totale'+id).text(nouveau_totale + "    DT ") ;
+
+
+
+
+
+       // etape 2 :
+
+       // vlaeur mté3 totale mté3 l'input eli fl ' partie commande bch ttbadél ' .
+
+
+
+        sous_tot = $('#soustotale').val() ;
+
+        string_sous_tot = sous_tot.toString().substring(0,4);
+
+       //alert("sous totale de commande = " + string_sous_tot);  // 0  --> init (tot cmd)
+
+       //alert(" sous totale de commande 2 =  " + sous_tot);   // 0 DT --> init (tot cmd)
+
+       // la somme des totales de tous les prod
+
+       var somme_prod = 0 ;
+
+       $(".totale").each(function(){
+
+       	//alert("tous les totales des prod");
+
+      //alert( $(this).text().substring(0,4) );
+
+      // somme des tot des prod
+
+      somme_prod += parseInt( $(this).text().substring(0,4) ) ;
+
+          	});
+
+     //  alert("somme des prod = " + somme_prod.toString() ) ;
+
+       // etpae finale : modifier le totale de cmd 
+
+       // var sous_tott = document.getElementById("soustotale").value;
+
+        $("#soustotale").val(somme_prod.toString() + " DT ") ;
+
+
+
+       //alert( string_sous_tot +" + "+ string_tot  ) ;
+
+
+        //alert("les totales lkol = " + string_tot) ;
+
+       // convert string to int . --> + 
+
+       //var somme_totale = parseInt(string_sous_tot) + parseInt(string_tot);
+
+       //$('#soustotale').val( somme_totale.toString() + " DT ") ;
+
+
+       
+       
+      // $('#'+id).stop(); // chouf 7kéyét 'callback'
+      //alert("new id === " + new_id ) ;
+
+
+  });
+
+
+
+
+// ta3ml fonction té5ou totale mté3 loula + thénya + .... 
+
+// w t3aytélha directe kil ajax 
+
+
+//somme_totale(id);
+
+//somme_totale();
+
+
+}
+
+
+
+
+
+function somme_totale(){
+
+	$( document ).ready(function() {
+
+	 var somme_prod = 0 ;
+
+       $(".totale").each(function(){
+
+       	//alert("tous les totales des prod");
+
+      //alert( $(this).text().substring(0,4) );
+
+      // somme des tot des prod
+
+      somme_prod += parseInt( $(this).text().substring(0,4) ) ;
+
+          	});
+
+     //  alert("somme des prod = " + somme_prod.toString() ) ;
+
+       // etpae finale : modifier le totale de cmd 
+
+       // var sous_tott = document.getElementById("soustotale").value;
+
+        $("#soustotale").val(somme_prod.toString() + " DT ") ;
+
+	});
+}
+
+
+
+
+
+somme_totale() ;
+
+</script>
+
+
+
+</body>
+</html>
